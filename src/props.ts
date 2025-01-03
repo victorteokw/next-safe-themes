@@ -14,7 +14,7 @@ export function htmlThemeProps(theme: string, config: ThemeConfig = defaultConfi
     className.push(`${config.additionalClassPrefix}${theme}`)
   }
   if (config.dataTheme) {
-    (retval as any).datatheme = theme
+    (retval as any)['data-theme'] = theme
   }
   if (config.style) {
     retval.style = {

@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server"
-
-export const THEME_COOKIE_KEY = 'NEXT_THEME'
+import { THEME_COOKIE_KEY } from "../constants"
 
 export const THEME_HEADER_KEY = 'X-NEXT-THEME'
 
