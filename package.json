@@ -1,0 +1,11 @@
+{
+  "name": "next-safe-themes",
+  "version": "0.0.1",
+  "description": "Themes for Next.js, safe, no hydration errors.",
+  "dependencies": {
+    "next": "^15.1.3"
+  },
+  "devDependencies": {
+    "typescript": "^5"
+  }
+}
