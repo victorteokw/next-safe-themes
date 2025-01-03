@@ -1,8 +1,9 @@
 'use client'
-import { createContext, ReactNode } from "react"
+import { createContext, ReactNode, useEffect, useState } from "react"
 import { THEME_COOKIE_KEY } from "../constants"
 import reactUseCookie from "react-use-cookie"
 import { defaultConfig, ThemeConfig } from "../config"
+import useLocalStorage from "use-local-storage"
 
 type ContextProps = {
   theme: string
@@ -57,12 +58,22 @@ function updateHtmlTag(theme: string, config: ThemeConfig = defaultConfig) {
 
 export function ThemeProvider({ initialTheme, themeConfig, children }: ThemeProviderProps) {
   const [cookie, setCookie] = reactUseCookie(THEME_COOKIE_KEY, initialTheme)
-
+  const [local, setLocal] = useLocalStorage(THEME_COOKIE_KEY, initialTheme)
+  const [shouldUpdateLocal, setShouldUpdateLocal] = useState(true)
+  if (shouldUpdateLocal) {
+    if (local !== cookie) {
+      setLocal(cookie)
+    }
+    setShouldUpdateLocal(false)
+  }
+  useEffect(() => {
+    updateHtmlTag(local, themeConfig)
+  }, [local])
   return <Context.Provider value={{
-    theme: cookie,
+    theme: local,
     setTheme: (theme: string) => {
       setCookie(theme)
-      updateHtmlTag(theme, themeConfig)
+      setLocal(theme)
     }
   }}>
     {children}
