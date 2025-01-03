@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server"
 
 export const THEME_COOKIE_KEY = 'NEXT_THEME'
 
@@ -12,7 +12,7 @@ function emptyMiddleware(request: NextRequest): NextResponse {
   })
 }
 
-export function themesMiddleware(middleware: (request: NextRequest) => NextResponse = emptyMiddleware) {
+export function createThemesMiddleware(middleware: (request: NextRequest) => NextResponse = emptyMiddleware) {
   return (request: NextRequest) => {
     const cookie = request.cookies.get(THEME_COOKIE_KEY)
     request.headers.set(THEME_HEADER_KEY, cookie?.value || 'system')

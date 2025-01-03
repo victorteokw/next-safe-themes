@@ -1,1 +1,2 @@
-export const a = 1
+export * from './config'
+export * from './props'
