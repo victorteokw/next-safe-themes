@@ -2,12 +2,26 @@
   "name": "next-safe-themes",
   "version": "0.1.0",
   "description": "Themes for Next.js, safe, no hydration errors.",
-  "license": "MIT",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
     "./*": "./dist/*.js"
   },
+  "files": [
+    "README.md",
+    "LICENSE",
+    "dist/**/*"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/victorteokw/next-safe-themes.git"
+  },
+  "bugs": {
+    "url": "https://github.com/victorteokw/next-safe-themes/issues"
+  },
+  "homepage": "https://github.com/victorteokw/next-safe-themes#readme",
+  "author": "Victor Teo <yeannylam@gmail.com>",
+  "license": "MIT",
   "dependencies": {
     "next": "^15",
     "react": "^19",
