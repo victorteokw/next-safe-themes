@@ -13,7 +13,8 @@
     "declaration": true,
     "declarationDir": "./dist",
     "declarationMap": true,
+    "jsx": "react-jsx",
   },
-  "include": ["src/**/*.ts"],
+  "include": ["src/**/*.ts", "src/client/provider.tsx"],
   "exclude": ["node_modules", "dist"]
 }
