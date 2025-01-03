@@ -2,6 +2,17 @@
 
 Themes for Next.js, safe, no hydration errors.
 
+## Features
+
+* ✅ Any number of themes with a default one
+* ✅ Sync with multiple tabs
+* ✅ Supports Next.js app router
+* ✅ No flash on load
+* ✅ Server rendering
+* ✅ No hydration errors
+* ✅ Custom configurations
+* ✅ `useTheme` hook
+
 ## Motivation
 
 I can't find yet another theming library for Next.js besides next-themes.

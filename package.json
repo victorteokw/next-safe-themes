@@ -1,6 +1,6 @@
 {
   "name": "next-safe-themes",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Themes for Next.js, safe, no hydration errors.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
