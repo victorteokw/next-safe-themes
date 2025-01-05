@@ -1,4 +1,9 @@
 # Next Safe Themes
+[![NPM version][npm-image]][npm-url]
+[![Build Status][github-ci-image]][github-ci-url]
+[![Test Coverage][cov-image]][cov-url]
+[![License][license-image]][license-url]
+[![PR Welcome][pr-image]][pr-url]
 
 Themes for Next.js, safe, no hydration errors.
 
@@ -124,6 +129,24 @@ export default async function Layout({ children }) {
 }
 ```
 
+
 ## License
 
-MIT License.
+This package is an open-sourced software licensed under the
+[MIT License][license-url].
+
+## Contributing
+
+Issues and PRs are obviously welcomed and encouraged, for bug fixing, more
+accurate type definitions, new features as well as documentation.
+
+[npm-image]: https://img.shields.io/npm/v/next-safe-themes.svg?style=flat-square&color=ff69b4&logo=react
+[npm-url]: https://npmjs.org/package/next-safe-themes
+[github-ci-image]: https://img.shields.io/github/actions/workflow/status/victorteokw/next-safe-themes/CI.yml.svg?style=flat-square&color=green&logo=github
+[github-ci-url]: https://github.com/victorteokw/next-safe-themes/actions/
+[cov-image]: https://img.shields.io/codecov/c/github/victorteokw/next-safe-themes/main.svg?style=flat-square&logo=codecov
+[cov-url]: https://codecov.io/gh/victorteokw/next-safe-themes
+[license-image]: https://img.shields.io/github/license/victorteokw/next-safe-themes.svg?style=flat-square&color=blue
+[license-url]: https://github.com/victorteokw/next-safe-themes/blob/master/LICENSE
+[pr-image]: https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square&color=orange
+[pr-url]: https://github.com/victorteokw/next-safe-themes/blob/master/CONTRIBUTING.md
