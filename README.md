@@ -129,7 +129,6 @@ export default async function Layout({ children }) {
 }
 ```
 
-
 ## License
 
 This package is an open-sourced software licensed under the
