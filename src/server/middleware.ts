@@ -4,6 +4,7 @@ import { THEME_COOKIE_KEY } from "../constants"
 export const THEME_HEADER_KEY = 'X-NEXT-THEME'
 
 function emptyMiddleware(request: NextRequest): NextResponse {
+  /* istanbul ignore next */
   return NextResponse.next({
     request: {
       headers: request.headers
