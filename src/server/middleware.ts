@@ -3,7 +3,7 @@ import { THEME_COOKIE_KEY } from "../constants"
 
 export const THEME_HEADER_KEY = 'X-NEXT-THEME'
 
-function emptyMiddleware(request: NextRequest): NextResponse {
+function emptyMiddleware(request: NextRequest): NextResponse | undefined {
   /* istanbul ignore next */
   return NextResponse.next({
     request: {
@@ -12,7 +12,7 @@ function emptyMiddleware(request: NextRequest): NextResponse {
   })
 }
 
-export function createThemesMiddleware(middleware: (request: NextRequest) => NextResponse = emptyMiddleware) {
+export function createThemesMiddleware(middleware: (request: NextRequest) => NextResponse | undefined = emptyMiddleware) {
   return (request: NextRequest) => {
     const cookie = request.cookies.get(THEME_COOKIE_KEY)
     request.headers.set(THEME_HEADER_KEY, cookie?.value || 'system')
