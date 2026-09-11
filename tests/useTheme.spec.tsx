@@ -1,15 +1,8 @@
 import "global-jsdom/register"
 import { describe, it, expect } from '@jest/globals'
-import React from 'react'
 import { act, render } from '@testing-library/react'
 import { useTheme } from '../src/client/hook'
 import { ThemeProvider } from '../src/client/provider'
-
-const wait = (n = 0) => {
-  return new Promise(function(resolve) {
-    setTimeout(resolve, n)
-  })
-}
 
 describe('useTheme', () => {
 
