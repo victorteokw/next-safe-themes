@@ -22,11 +22,16 @@ export function insertClassNames(element: HTMLElement, classNames: string[]) {
 }
 
 export function removeClassName(element: HTMLElement, className: string) {
-
-}
-
-export function removeClassNames(element: HTMLElement, classNames: string[]) {
-
+    if (element.className.includes(className)) {
+        const newClassNames: string[] = []
+        element.className.split(' ').forEach((className) => {
+            const trimmedClassName = className.trim()
+            if (trimmedClassName.length > 0 && trimmedClassName !== className) {
+                newClassNames.push(trimmedClassName)
+            }
+        })
+        element.className = newClassNames.join(' ')
+    }
 }
 
 export function prefixedClassName(className: string, prefix: string | undefined) {

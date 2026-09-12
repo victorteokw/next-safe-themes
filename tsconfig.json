@@ -8,7 +8,7 @@
     "module": "CommonJS",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "rootDir": ".",
+    "rootDir": "./src",
     "outDir": "./dist",
     "allowJs": true,
     "declaration": true,
@@ -16,6 +16,6 @@
     "declarationMap": true,
     "jsx": "react-jsx",
   },
-  "include": ["src/**/*.ts", "src/client/provider.tsx"],
+  "include": ["src/**/*.ts"],
   "exclude": ["node_modules", "dist"]
 }
