@@ -3,6 +3,7 @@ import { createContext, ReactNode, useEffect, useState } from "react"
 import { THEME_COOKIE_KEY } from "../constants"
 import reactUseCookie from "react-use-cookie"
 import { defaultConfig, ThemeConfig } from "../config"
+import { insertClassName } from './className'
 import useLocalStorage from "use-local-storage"
 
 type ContextProps = {
@@ -27,7 +28,7 @@ function updateHtmlTag(theme: string, config: ThemeConfig = defaultConfig) {
   if (theme === 'system') {
     html.removeAttribute('class')
     html.removeAttribute('data-theme')
-    html.removeAttribute('style')
+    html.style.colorScheme = ''
     return
   }
   let dataTheme: string | undefined = undefined
@@ -46,7 +47,7 @@ function updateHtmlTag(theme: string, config: ThemeConfig = defaultConfig) {
     style = `color-scheme: ${theme};`
   }
   if (classList.length) {
-    html.setAttribute("class", classList.join(" "))
+    classList.forEach((className) => insertClassName(html, className))
   }
   if (style) {
     html.setAttribute("style", style)
