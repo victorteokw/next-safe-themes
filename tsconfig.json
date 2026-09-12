@@ -8,6 +8,7 @@
     "module": "CommonJS",
     "resolveJsonModule": true,
     "isolatedModules": true,
+    "rootDir": ".",
     "outDir": "./dist",
     "allowJs": true,
     "declaration": true,
