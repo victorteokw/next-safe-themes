@@ -3,7 +3,7 @@ import { createContext, ReactNode, useEffect, useState } from "react"
 import { THEME_COOKIE_KEY } from "../constants"
 import reactUseCookie from "react-use-cookie"
 import { defaultConfig, ThemeConfig } from "../config"
-import { insertClassName } from './className'
+import { insertClassNames, prefixedClassName, removeClassName } from './className'
 import useLocalStorage from "use-local-storage"
 
 type ContextProps = {
@@ -22,17 +22,20 @@ type ThemeProviderProps = {
   children?: ReactNode
 }
 
-function updateHtmlTag(theme: string, config: ThemeConfig = defaultConfig) {
+function updateHtmlTag(
+  previous: string,
+  theme: string,
+  config: ThemeConfig = defaultConfig
+) {
   const html = window.document.querySelector("html")
   if (!html) return
   if (theme === 'system') {
-    html.removeAttribute('class')
+    removeClassName(html, prefixedClassName(previous, config.additionalClassPrefix))
     html.removeAttribute('data-theme')
     html.style.colorScheme = ''
     return
   }
   let dataTheme: string | undefined = undefined
-  let style: string | undefined = undefined
   const classList = []
   if (config.class) {
     classList.push(theme)
@@ -41,16 +44,13 @@ function updateHtmlTag(theme: string, config: ThemeConfig = defaultConfig) {
     dataTheme = theme
   }
   if (config.additionalClassPrefix) {
-    classList.push(`${config.additionalClassPrefix}${theme}`)
+    classList.push(prefixedClassName(theme, config.additionalClassPrefix))
+  }
+  if (classList.length > 0) {
+    insertClassNames(html, classList)
   }
   if (config.style) {
-    style = `color-scheme: ${theme};`
-  }
-  if (classList.length) {
-    classList.forEach((className) => insertClassName(html, className))
-  }
-  if (style) {
-    html.setAttribute("style", style)
+    html.style.colorScheme = theme
   }
   if (dataTheme) {
     html.setAttribute("data-theme", dataTheme)
@@ -60,6 +60,7 @@ function updateHtmlTag(theme: string, config: ThemeConfig = defaultConfig) {
 export function ThemeProvider({ initialTheme, themeConfig, children }: ThemeProviderProps) {
   const [cookie, setCookie] = reactUseCookie(THEME_COOKIE_KEY, initialTheme)
   const [local, setLocal] = useLocalStorage(THEME_COOKIE_KEY, initialTheme)
+  const [previousLocal, setPreviousLocal] = useState(local)
   const [shouldUpdateLocal, setShouldUpdateLocal] = useState(true)
   if (shouldUpdateLocal) {
     if (local !== cookie) {
@@ -68,11 +69,12 @@ export function ThemeProvider({ initialTheme, themeConfig, children }: ThemeProv
     setShouldUpdateLocal(false)
   }
   useEffect(() => {
-    updateHtmlTag(local, themeConfig)
+    updateHtmlTag(previousLocal, local, themeConfig)
   }, [local])
   return <Context.Provider value={{
     theme: local,
     setTheme: (theme: string) => {
+      setPreviousLocal(local)
       setCookie(theme)
       setLocal(theme)
     }

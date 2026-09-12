@@ -24,3 +24,15 @@ export function insertClassNames(element: HTMLElement, classNames: string[]) {
 export function removeClassName(element: HTMLElement, className: string) {
 
 }
+
+export function removeClassNames(element: HTMLElement, classNames: string[]) {
+
+}
+
+export function prefixedClassName(className: string, prefix: string | undefined) {
+    if (prefix === undefined) {
+        return className
+    } else {
+        return `${prefix}${className}`
+    }
+}
